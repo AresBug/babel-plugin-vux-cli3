@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports = (babelHelper, opts = {}) => {
   const filename = opts.filename ? opts.filename : 'vux'
-  const vuxMapsPath = path.resolve(`node_modules/${filename}/src/components/map.json`)
+  const vuxMapsPath = `${require.resolve(filename).split(`/${filename}/`)[0]}/${filename}/src/components/map.json`
   global.vuxMaps = fs.existsSync(vuxMapsPath) ? require(vuxMapsPath) : {}
 
   const { types } = babelHelper
